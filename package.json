@@ -1,0 +1,28 @@
+{
+  "name": "ai-legal-assistant-for-rural-rights",
+  "version": "1.0.0",
+  "description": "Creating for nadhara competition in our college to present our idea",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivankart9/Ai-Legal-Assistant-for-Rural-Rights.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shivankart9/Ai-Legal-Assistant-for-Rural-Rights/issues"
+  },
+  "homepage": "https://github.com/shivankart9/Ai-Legal-Assistant-for-Rural-Rights#readme",
+  "dependencies": {
+    "@langchain/core": "^1.2.17",
+    "@langchain/ollama": "^1.3.0",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "pdf-parse": "^1.1.1"
+  }
+}

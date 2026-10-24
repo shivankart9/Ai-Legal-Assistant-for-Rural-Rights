@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Legal Assistant for Rural Rights | NAVADHARA-26</title>
+
+  <!-- Fonts: Yatra One (headings) + Mukta (body). Both support Hindi (Devanagari) and English. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Yatra+One&display=swap" rel="stylesheet" />
+
+  <!-- All styling lives in style.css (same folder) -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- ===================== TOP ALERT BAR (phones only) ===================== -->
+    <div class="topbar">
+      <strong></strong> &middot;     </div>
+
+    <!-- ===================== LEFT SIDEBAR (desktop) ===================== -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">⚖️</div>
+        <div>
+          <h1 class="brand-title">ग्रामीण अधिकार सहायक</h1>
+          <p class="brand-sub">AI Legal Assistant for Rural Rights</p>
+        </div>
+      </div>
+
+      <!-- Project info box -->
+      <section class="info-box" aria-label="Project info">
+        <p class="info-label">Hackathon</p>
+        <p class="info-name"></p>
+        <!-- ✏️ EDIT HERE: project tagline shown in the sidebar -->
+        <p class="info-text"></p>
+      </section>
+
+      <!-- Knowledge base tokens (filled by script.js) -->
+      <section class="kb" aria-label="Active knowledge base">
+        <div class="kb-head">
+          <h2>Active knowledge base</h2>
+          <span class="live"><span class="live-dot"></span> live</span>
+        </div>
+        <ul id="kbList" class="kb-list"></ul>
+        <p class="kb-note">
+          Answers are drawn only from these official documents, on this computer. Nothing is sent to paid AI services.
+        </p>
+      </section>
+
+      <section class="howto">
+        <h2>कैसे इस्तेमाल करें</h2>
+        <ol>
+          <li><span>1</span> बड़े हरे माइक बटन को दबाएँ।</li>
+          <li><span>2</span> अपना सवाल बोलें।</li>
+          <li><span>3</span> जवाब पढ़ें और सुनें।</li>
+        </ol>
+      </section>
+
+      <p class="disclaimer">
+        यह जानकारी सामान्य मार्गदर्शन के लिए है, वकील की सलाह नहीं। ज़रूरी मामलों में तहसील, पंचायत या कानूनी सहायता केंद्र से मिलें।
+      </p>
+    </aside>
+
+    <!-- ===================== MAIN CHAT AREA ===================== -->
+    <main class="main">
+
+      <header class="header">
+        <div class="header-text">
+          <h2 data-i18n="title">अपने अधिकार जानें</h2>
+          <p data-i18n="subtitle">ज़मीन, सरकारी योजनाएँ और ज़रूरी सहायता</p>
+        </div>
+
+        <div class="header-tools">
+          <!-- Text size: cycles Normal / Large / Extra large -->
+          <button id="fontBtn" type="button" class="tool-btn" title="Text size / अक्षर का आकार" aria-label="Change text size">
+            <span class="font-a-small">A</span><span class="font-a-big">A</span>
+          </button>
+
+          <!-- Voice reply on / off -->
+          <button id="muteBtn" type="button" class="tool-btn" aria-pressed="true" title="Voice reply on/off" aria-label="Voice reply on or off">
+            <span id="muteIcon">🔊</span>
+          </button>
+
+          <!-- Hindi / English toggle (the green pill slides) -->
+          <div id="langToggle" class="lang-toggle" data-active="hi" role="group" aria-label="Language">
+            <span class="lang-thumb"></span>
+            <button type="button" class="lang-btn" data-lang="hi">हिंदी (Hindi)</button>
+            <button type="button" class="lang-btn" data-lang="en">English</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Chat window -->
+      <div class="chat-wrap">
+        <section id="chat" class="chat" aria-live="polite" aria-label="Conversation"></section>
+        <button id="scrollBtn" type="button" class="scroll-btn" aria-label="Scroll to latest message">↓</button>
+      </div>
+
+      <!-- Bottom dock: text box + big microphone -->
+      <footer class="dock">
+        <form id="textForm" class="text-form">
+          <input id="textInput" class="text-input" type="text" autocomplete="off" maxlength="500"
+                 placeholder="यहाँ लिखें या माइक दबाकर बोलें..." />
+          <button id="sendBtn" type="submit" class="send-btn" data-i18n="send">भेजें</button>
+        </form>
+
+        <div id="micArea" class="mic-area">
+          <div class="mic-wrap">
+            <span class="mic-ring"></span>
+            <span class="mic-ring mic-ring--late"></span>
+            <button id="micBtn" type="button" class="mic-btn" aria-label="Start speaking">
+              <!-- mic icon -->
+              <svg id="iconMic" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="2" width="6" height="12" rx="3"></rect>
+                <path d="M5 11a7 7 0 0 0 14 0"></path>
+                <line x1="12" y1="18" x2="12" y2="22"></line>
+              </svg>
+              <!-- stop icon (shown while recording) -->
+              <svg id="iconStop" class="hidden" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+              </svg>
+            </button>
+          </div>
+
+          <div class="mic-status">
+            <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p id="micLabel" class="mic-label" data-i18n="micIdle">बोलने के लिए दबाएँ</p>
+            <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- All behaviour lives in script.js (same folder) -->
+  <script src="script.js"></script>
+</body>
+</html>
